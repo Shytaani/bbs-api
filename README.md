@@ -1,2 +1,2 @@
 # bbs-api
-RESTful api for the BBS Application with Spring Boot
+RESTful API for the BBS Application with Spring Boot
