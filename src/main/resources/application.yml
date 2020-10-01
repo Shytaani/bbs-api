@@ -1,1 +1,15 @@
-
+spring:
+    dataSource:
+        url: jdbc:mysql://localhost:3306/bbs?serverTimezone=JST
+        username: bbs_tanikawa
+        password: TanishY_bbs
+    jackson:
+        time-zone: Asia/Tokyo
+    jpa:
+        database: MYSQL
+        hibernate:
+          ddl-auto: update
+        
+server:
+    servlet:
+        context-path: /api
