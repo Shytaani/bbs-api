@@ -1,8 +1,8 @@
 spring:
     dataSource:
         url: jdbc:mysql://localhost:3306/bbs?serverTimezone=JST
-        username: bbs_tanikawa
-        password: TanishY_bbs
+        username: foo
+        password: bar
     jackson:
         time-zone: Asia/Tokyo
     jpa:
