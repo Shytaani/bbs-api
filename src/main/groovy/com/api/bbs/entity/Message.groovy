@@ -9,16 +9,16 @@ class Message {
     @GeneratedValue
     Long id
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     String name
 
-    @Column
+    @Column(length = 254)
     String email
 
-    @Column
+    @Column(length = 40)
     String subject
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 400)
     String content
 
     @Column(nullable = false)
