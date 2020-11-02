@@ -1,7 +1,7 @@
 package com.api.bbs.controller
 
 import com.api.bbs.controller.request.MessageRequest
-import com.api.bbs.controller.response.MessageCommand
+import com.api.bbs.controller.response.MessageResponse
 import com.api.bbs.service.MessageService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -15,22 +15,22 @@ class BbsController {
     private MessageService service
 
     @GetMapping(path = "/messages")
-    List<MessageCommand> getAll() {
+    List<MessageResponse> getAll() {
         service.getAllMessages()
     }
 
     @GetMapping(path = "/message/{id}")
-    MessageCommand get(@PathVariable final Long id) {
+    MessageResponse get(@PathVariable final Long id) {
         service.getMessage(id)
     }
 
      @PostMapping(path = "/message")
-     MessageCommand post(@RequestBody final MessageRequest request) {
+     MessageResponse post(@RequestBody final MessageRequest request) {
          service.postMessage(request)
      }
 
     @PutMapping(path = "/message/{id}")
-    MessageCommand put(@PathVariable final Long id, @RequestBody final MessageRequest request) {
+    MessageResponse put(@PathVariable final Long id, @RequestBody final MessageRequest request) {
         service.putMessage(id, request)
     }
 

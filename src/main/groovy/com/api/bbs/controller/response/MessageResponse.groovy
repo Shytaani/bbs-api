@@ -3,7 +3,7 @@ package com.api.bbs.controller.response
 import groovy.transform.Canonical
 
 @Canonical
-class MessageCommand {
+class MessageResponse {
     
     Long id
 
