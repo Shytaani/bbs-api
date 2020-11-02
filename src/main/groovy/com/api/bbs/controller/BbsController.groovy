@@ -4,6 +4,7 @@ import com.api.bbs.controller.request.MessageRequest
 import com.api.bbs.controller.response.MessageResponse
 import com.api.bbs.service.MessageService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -25,12 +26,12 @@ class BbsController {
     }
 
      @PostMapping(path = "/message")
-     MessageResponse post(@RequestBody final MessageRequest request) {
+     MessageResponse post(@RequestBody @Validated final MessageRequest request) {
          service.postMessage(request)
      }
 
     @PutMapping(path = "/message/{id}")
-    MessageResponse put(@PathVariable final Long id, @RequestBody final MessageRequest request) {
+    MessageResponse put(@PathVariable final Long id, @RequestBody @Validated final MessageRequest request) {
         service.putMessage(id, request)
     }
 
