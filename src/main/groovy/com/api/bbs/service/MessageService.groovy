@@ -1,7 +1,7 @@
 package com.api.bbs.service
 
 import com.api.bbs.controller.request.MessageRequest
-import com.api.bbs.controller.response.MessageCommand
+import com.api.bbs.controller.response.MessageResponse
 import com.api.bbs.entity.Message
 import com.api.bbs.repository.MessageRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,16 +15,16 @@ class MessageService {
     private MessageRepository repository
 
     @Transactional(readOnly = true)
-    List<MessageCommand> getAllMessages() {
+    List<MessageResponse> getAllMessages() {
         repository.findAllByOrderByIdDesc().collect {
-            new MessageCommand(it.id, it.name, it.email, it.subject, it.content, it.postedDate)
+            new MessageResponse(it.id, it.name, it.email, it.subject, it.content, it.postedDate)
         }
     }
 
     @Transactional(readOnly = true)
-    MessageCommand getMessage(final Long id) {
+    MessageResponse getMessage(final Long id) {
         def message = repository.getOne(id)
-        new MessageCommand(
+        new MessageResponse(
             message.id,
             message.name,
             message.email,
@@ -34,14 +34,14 @@ class MessageService {
     }
 
     @Transactional
-    MessageCommand postMessage(final MessageRequest request) {
+    MessageResponse postMessage(final MessageRequest request) {
         def savedMessage = repository.save(new Message(
                 name: request.name,
                 email: request.email,
                 subject: request.subject,
                 content: request.content,
                 postedDate: new Date()))
-        new MessageCommand(
+        new MessageResponse(
                 savedMessage.id,
                 savedMessage.name,
                 savedMessage.email,
@@ -51,14 +51,14 @@ class MessageService {
     }
 
     @Transactional
-    MessageCommand putMessage(final Long id, final MessageRequest request) {
+    MessageResponse putMessage(final Long id, final MessageRequest request) {
         def message = repository.getOne(id)
         message.name = request.name
         message.email = request.email
         message.subject = request.subject
         message.content = request.content
         def updatedMessage = repository.save(message)
-        new MessageCommand(
+        new MessageResponse(
                 updatedMessage.id,
                 updatedMessage.name,
                 updatedMessage.email,
