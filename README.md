@@ -10,14 +10,14 @@ Install JDK 8 or 11. (11 is recommended.)
 Install MySQL 8.0.xx.
 
 ### Create DB and Table
-Log in to your MySQL server by root.
+1. Log in to your MySQL server by root.
 
-Then execute SQL below and create database `bbs`.
+2. execute SQL below and create database `bbs`.
 ```
 CREATE DATABASE bbs;
 ```
 
-Then execute SQL below and create table `message`.
+3. execute SQL below and create table `message`.
 ```
 CREATE TABLE message (
     id BIGINT NOT NULL PRIMARY KEY,
