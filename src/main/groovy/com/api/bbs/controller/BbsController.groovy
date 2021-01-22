@@ -25,18 +25,18 @@ class BbsController {
         service.getMessage(id)
     }
 
-     @PostMapping(path = "/message")
-     MessageResponse post(@RequestBody @Validated final MessageRequest request) {
-         service.postMessage(request)
-     }
+    @PostMapping(path = "/message")
+    MessageResponse post(@RequestBody @Validated final MessageRequest request) {
+        service.postMessage(request)
+    }
 
     @PutMapping(path = "/message/{id}")
     MessageResponse put(@PathVariable final Long id, @RequestBody @Validated final MessageRequest request) {
         service.putMessage(id, request)
     }
 
-     @DeleteMapping(path = "/message/{id}")
-     void delete(@PathVariable final Long id) {
-         service.deleteMessage(id)
-     }
+    @DeleteMapping(path = "/message/{id}")
+    void delete(@PathVariable final Long id) {
+        service.deleteMessage(id)
+    }
 }

@@ -3,8 +3,11 @@ package com.api.bbs.service
 import com.api.bbs.controller.request.MessageRequest
 import com.api.bbs.controller.response.MessageResponse
 import com.api.bbs.entity.Message
+import com.api.bbs.exception.MessageNotFoundException
 import com.api.bbs.repository.MessageRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.MessageSource
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -13,6 +16,9 @@ class MessageService {
 
     @Autowired
     private MessageRepository repository
+
+    @Autowired
+    private MessageSource validationMessageSource
 
     @Transactional(readOnly = true)
     List<MessageResponse> getAllMessages() {
@@ -23,7 +29,8 @@ class MessageService {
 
     @Transactional(readOnly = true)
     MessageResponse getMessage(final Long id) {
-        def message = repository.getOne(id)
+        def message = repository.findById(id).orElseThrow(
+                () -> new MessageNotFoundException(validationMessageSource.getMessage("message.not.found", null, LocaleContextHolder.locale)))
         new MessageResponse(
             message.id,
             message.name,
@@ -52,7 +59,8 @@ class MessageService {
 
     @Transactional
     MessageResponse putMessage(final Long id, final MessageRequest request) {
-        def message = repository.getOne(id)
+        def message = repository.findById(id).orElseThrow(
+                () -> new MessageNotFoundException(validationMessageSource.getMessage("message.not.found", null, LocaleContextHolder.locale)))
         message.name = request.name
         message.email = request.email
         message.subject = request.subject
@@ -69,7 +77,8 @@ class MessageService {
 
     @Transactional
     void deleteMessage(final Long id) {
-        def message = repository.getOne(id)
+        def message = repository.findById(id).orElseThrow(
+                () -> new MessageNotFoundException(validationMessageSource.getMessage("message.not.found", null, LocaleContextHolder.locale)))
         repository.delete(message)
     }
 }
