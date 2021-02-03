@@ -2,7 +2,6 @@ package com.api.bbs.handler
 
 import com.api.bbs.controller.response.ApiError
 import com.api.bbs.exception.MessageNotFoundException
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.http.HttpHeaders
@@ -17,8 +16,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice("com.api.bbs.controller")
 class BbsApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @Autowired
-    MessageSource validationMessageSource
+    private final MessageSource validationMessageSource
+
+    BbsApiExceptionHandler(MessageSource validationMessageSource) {
+        this.validationMessageSource = validationMessageSource
+    }
 
     @Override
     protected ResponseEntity<ApiError> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {

@@ -5,7 +5,6 @@ import com.api.bbs.controller.response.MessageResponse
 import com.api.bbs.entity.Message
 import com.api.bbs.exception.MessageNotFoundException
 import com.api.bbs.repository.MessageRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.stereotype.Service
@@ -14,11 +13,14 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class MessageService {
 
-    @Autowired
-    private MessageRepository repository
+    private final MessageRepository repository
 
-    @Autowired
-    private MessageSource validationMessageSource
+    private final MessageSource validationMessageSource
+
+    MessageService(MessageRepository repository, MessageSource validationMessageSource) {
+        this.repository = repository
+        this.validationMessageSource = validationMessageSource
+    }
 
     @Transactional(readOnly = true)
     List<MessageResponse> getAllMessages() {
