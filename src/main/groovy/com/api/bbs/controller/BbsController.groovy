@@ -3,7 +3,6 @@ package com.api.bbs.controller
 import com.api.bbs.controller.request.MessageRequest
 import com.api.bbs.controller.response.MessageResponse
 import com.api.bbs.service.MessageService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin
 class BbsController {
 
-    @Autowired
-    private MessageService service
+    private final MessageService service
+
+    BbsController(MessageService service) {
+        this.service = service
+    }
 
     @GetMapping(path = "/messages")
     List<MessageResponse> getAll() {
