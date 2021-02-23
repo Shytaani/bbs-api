@@ -1,15 +1,19 @@
 # bbs-api
-RESTful API for the BBS Application with Spring Boot
+RESTful CRUD API for the BBS Application with Spring Boot.
 
-## Getting Started
+## Environment
+- Java 11
+- MySQL 8
 
-### Install Java
-Install JDK 8 or 11. (11 is recommended.)
+## How to run this api on local
 
-### Install MySQL
-Install MySQL 8.0.xx.
+### 1. Clone this repository
+Open the Command Prompt and execute git command below.
+```
+git clone https://github.com/Tanishy/bbs-api.git
+```
 
-### Create DB and Table
+### 2. Create DB and Table
 1. Log in to your MySQL server by root.
 
 2. execute SQL below and create database `bbs`.
@@ -18,6 +22,7 @@ CREATE DATABASE bbs;
 ```
 
 3. execute SQL below and create table `message`.
+※This step is optional. The table is created automatically by hibernate.
 ```
 CREATE TABLE message (
     id BIGINT NOT NULL PRIMARY KEY,
@@ -29,16 +34,8 @@ CREATE TABLE message (
 );
 ```
 
-## Install Git ※If you haven't installed git yet
-
-## Clone this repository
-Open the Command Prompt and execute git command below.
-```
-git clone https://github.com/Tanishy/bbs-api.git
-```
-
-## Set DB connection
-Change `username` and `password` in the file `bbs-api/src/main/resources/application.yml` to account you crated.
+### 3. Set DB connection
+Change `username` and `password` in `application.yml` to account you crated.
 ```
 spring:
     dataSource:
@@ -47,8 +44,12 @@ spring:
         password: YOUR PASSWORD
 ```
 
-## Run the Server
+### 4. Run the server
 Open the Command Prompt and execute gradle command below.
 ```
 gradlew bootRun
 ```
+
+### Attention
+The all records on message table is deleted each time when you stop the server.
+If you would like to keep records you saved, change the value of `jpa.hibernate.ddl-auto` to `update` in `application.yml`.
