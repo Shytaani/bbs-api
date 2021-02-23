@@ -50,6 +50,6 @@ Open the Command Prompt and execute gradle command below.
 gradlew bootRun
 ```
 
-### Attention
+### ※Attention
 The all records on message table is deleted each time when you stop the server.
 If you would like to keep records you saved, change the value of `jpa.hibernate.ddl-auto` to `update` in `application.yml`.
