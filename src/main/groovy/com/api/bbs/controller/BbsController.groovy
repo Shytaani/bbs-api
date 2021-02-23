@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(path = "/bbs")
+@RequestMapping(path = "/v1")
 @CrossOrigin
 class BbsController {
 
