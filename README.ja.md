@@ -1,5 +1,5 @@
 # bbs-api (Japanese)/([English](README.md))
-掲示板アプリケーション用のRESTful CRUD API。（Groovy + Spring Boot）
+掲示板アプリケーション用のRESTful CRUD API。 (Groovy + Spring Boot)
 
 ## 環境
 - Java 11
