@@ -1,5 +1,5 @@
-# bbs-api
-RESTful CRUD API for the BBS Application with Spring Boot.
+# bbs-api (English)/([Japanese](README.ja.md))
+RESTful CRUD API for the BBS Application. (Groovy + Spring Boot)
 
 ## Environment
 - Java 11
@@ -14,7 +14,7 @@ git clone https://github.com/Tanishy/bbs-api.git
 ```
 
 ### 2. Create DB and Table
-1. Log in to your MySQL server by root.
+1. Log in to your MySQL server.
 
 2. execute SQL below and create database `bbs`.
 ```
@@ -22,7 +22,7 @@ CREATE DATABASE bbs;
 ```
 
 3. execute SQL below and create table `message`.
-※This step is optional. The table is created automatically by hibernate.
+※This step is optional. The table is created automatically by Hibernate when you run the server.
 ```
 CREATE TABLE message (
     id BIGINT NOT NULL PRIMARY KEY,
@@ -51,5 +51,5 @@ gradlew bootRun
 ```
 
 ### ※Attention
-The all records on message table is deleted each time when you stop the server.
-If you would like to keep records you saved, change the value of `jpa.hibernate.ddl-auto` to `update` in `application.yml`.
+The message table is deleted each time when you stop the server.
+If you would like to keep records you create, change the value of `jpa.hibernate.ddl-auto` to `update` in `application.yml`.
