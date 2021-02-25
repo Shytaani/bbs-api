@@ -1,4 +1,4 @@
-# bbs-api
+# bbs-api (English)/([Japanese](README.ja.md))
 RESTful CRUD API for the BBS Application with Spring Boot.
 
 ## Environment
