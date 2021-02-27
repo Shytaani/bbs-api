@@ -9,7 +9,7 @@
 
 ### 1. このリポジトリをクローン
 コマンドプロンプトを開き、以下のgitコマンドを実行してください。
-```
+```shell
 git clone https://github.com/Tanishy/bbs-api.git
 ```
 
@@ -36,7 +36,7 @@ CREATE TABLE message (
 
 ### 3. DB接続設定を変更する
 `application.yml` の `username` と `password` を自身のアカウントのものに変更してください。
-```
+```yaml
 spring:
     dataSource:
         url: jdbc:mysql://localhost:3306/bbs?serverTimezone=JST
@@ -46,9 +46,42 @@ spring:
 
 ### 4. サーバーを起動する
 コマンドプロンプトを開き、以下のgradleコマンドを実行してください。
-```
+```shell
 gradlew bootRun
 ```
+
+### 5. クライアント(アプリケーション、ブラウザ等)からアクセスする
+
+- 全件取得
+  - メソッド : GET
+  - URL : http://localhost:8080/bbs/api/v1/messages
+
+- 1件取得
+  - メソッド : GET
+  - URL : http://localhost:8080/bbs/api/v1/message/{メッセージのID}
+
+- 登録
+  - メソッド : POST
+  - URL : http://localhost:8080/bbs/api/v1/message
+  - ボディ : [ペイロードを参照](#登録/更新のペイロード)
+
+- 更新
+   - メソッド : PUT
+   - URL : http://localhost:8080/bbs/api/v1/message/{メッセージのID}
+  - ボディ : [ペイロードを参照](#登録/更新のペイロード)
+
+- 削除
+   - メソッド : DELETE
+   - URL : http://localhost:8080/bbs/api/v1/message/{メッセージのID}
+
+### 登録/更新のペイロード
+
+フィールド | 概要 | 必須 | 最大長
+------|------------|---|---
+name | 名前 | ○ | 20
+email | メールアドレス | × | 254
+subject | 件名 | × | 40
+content | 本文 | ○ | 400
 
 ### ※注意
 サーバー停止時にmessageテーブルは削除されます。
